@@ -52,5 +52,8 @@ dependencies {
     //使用OkHttp加载图片
     compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
 
+    //依赖注入
+    compile 'com.google.dagger:dagger:2.10-rc1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.10-rc1'
 
 }
