@@ -1,4 +1,4 @@
-package sdaishu.baselib.base;
+package sdaishu.android_flux_blocks.baselib.base.flux;
 
 import java.util.HashMap;
 import java.util.Map;

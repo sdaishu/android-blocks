@@ -56,6 +56,9 @@ dependencies {
     compile 'com.google.dagger:dagger:2.0.2'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.0.2'
 
-    //仅在编译的时候使用
+    //快速找到控件
     provided 'com.jakewharton:butterknife:8.5.1'
+
+    provided 'javax.annotation:javax.annotation-api:1.3'
+
 }

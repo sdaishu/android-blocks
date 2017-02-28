@@ -1,6 +1,9 @@
-package sdaishu.baselib.base;
+package sdaishu.android_flux_blocks.baselib.base.flux;
 
 import android.text.TextUtils;
+
+import io.reactivex.functions.Consumer;
+import sdaishu.android_flux_blocks.baselib.base.Constants;
 
 
 /**
@@ -9,24 +12,20 @@ import android.text.TextUtils;
 
 public class Dispatcher {
     private final RxManage bus;
-    private static Dispatcher instance;
 
-    public static Dispatcher get(RxManage bus) {
-        if (instance == null) {
-            instance = new Dispatcher(bus);
-        }
-        return instance;
-    }
 
-    Dispatcher(RxManage bus) {
+    public Dispatcher(RxManage bus) {
         this.bus = bus;
     }
 
 
-    public void emitChange(Object o) {
-        post(Constants.EVENT_STORE_CHANGE, o);
+    public void emitChange() {
+        emitChange(Constants.EVENT_STORE_CHANGE);
     }
 
+    public void emitChange(String type) {
+        post(type, "");
+    }
 
     /**
      * 分配事件
@@ -39,11 +38,22 @@ public class Dispatcher {
             throw new IllegalArgumentException("Type must not be empty");
         }
 
-        post(type, new Action.Builder().with(type).bundle(data));
+        post(type, data);
     }
 
 
     private void post(String tag, final Object event) {
         bus.post(tag, event);
     }
+
+    public void on(String tag, Consumer<Object> action1){
+        bus.on(tag,action1);
+    }
+
+    public void detach(){
+        bus.clear();
+    }
+
+
+
 }

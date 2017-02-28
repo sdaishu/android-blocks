@@ -1,4 +1,4 @@
-package sdaishu.baselib.base;
+package sdaishu.android_flux_blocks.baselib.base.flux;
 
 import android.support.annotation.NonNull;
 

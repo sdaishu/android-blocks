@@ -1,4 +1,4 @@
-package sdaishu.baselib.base;
+package sdaishu.android_flux_blocks.baselib.base.flux;
 
 /**
  * Created by cq on 2017/2/27.

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="sdaishu.baselib"
+          package="sdaishu.android_flux_blocks.baselib"
     >
 
     <application
