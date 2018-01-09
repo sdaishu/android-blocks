@@ -6,6 +6,7 @@ import android.support.multidex.MultiDexApplication;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.sdaishu.block.config.AppConfig;
+import com.sdaishu.block.config.UMengConfig;
 import com.sdaishu.block.config.WEEXConfig;
 import com.sdaishu.block.hybrid.weex.adapter.ImageAdapter;
 import com.sdaishu.block.hybrid.weex.module.HybridPageModule;
@@ -14,6 +15,7 @@ import com.taobao.weex.WXEnvironment;
 import com.taobao.weex.WXSDKEngine;
 import com.taobao.weex.common.WXException;
 import com.taobao.weex.utils.WXSoInstallMgrSdk;
+import com.umeng.socialize.PlatformConfig;
 
 /**
  * Created by dongmingcui on 2018/1/9.
@@ -58,7 +60,7 @@ public class App extends MultiDexApplication {
 
         initWEEX();
 
-        //initUMENG();
+        initUMENG();
 
         //initNIM();
 
@@ -83,14 +85,14 @@ public class App extends MultiDexApplication {
     /**
      * 友盟
      */
-//    public void initUMENG() {
-//
-//        PlatformConfig.setWeixin(UmengConfig.WEICHAT_APPID, UmengConfig.WEICHAT_SECRET);
-//        //QQ空间
-//        PlatformConfig.setQQZone(UmengConfig.QQ_APPID, UmengConfig.QQ_APPKEY);
-//        //新浪微博
-//        PlatformConfig.setSinaWeibo(UmengConfig.WEIBO_APPID, UmengConfig.WEIBO_APPKEY, UmengConfig.REDIRECT_URL);
-//    }
+    public void initUMENG() {
+
+        PlatformConfig.setWeixin(UMengConfig.WEICHAT_APPID, UMengConfig.WEICHAT_SECRET);
+        //QQ空间
+        PlatformConfig.setQQZone(UMengConfig.QQ_APPID, UMengConfig.QQ_APPKEY);
+        //新浪微博
+        PlatformConfig.setSinaWeibo(UMengConfig.WEIBO_APPID, UMengConfig.WEIBO_APPKEY, UMengConfig.REDIRECT_URL);
+    }
 
     /**
      * 路由
