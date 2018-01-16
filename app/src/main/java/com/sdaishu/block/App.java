@@ -5,6 +5,10 @@ import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.facebook.react.ReactApplication;
+import com.facebook.react.ReactNativeHost;
+import com.facebook.react.ReactPackage;
+import com.facebook.react.shell.MainReactPackage;
 import com.sdaishu.block.config.AppConfig;
 import com.sdaishu.block.config.UMengConfig;
 import com.sdaishu.block.config.WEEXConfig;
@@ -17,14 +21,16 @@ import com.taobao.weex.common.WXException;
 import com.taobao.weex.utils.WXSoInstallMgrSdk;
 import com.umeng.socialize.PlatformConfig;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by dongmingcui on 2018/1/9.
  */
 
-public class App extends MultiDexApplication {
+public class App extends MultiDexApplication implements ReactApplication {
 
     private static App _instance;
-
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -58,7 +64,7 @@ public class App extends MultiDexApplication {
 
         initARouter();
 
-        initWEEX();
+        //initWEEX();
 
         initUMENG();
 
@@ -109,23 +115,50 @@ public class App extends MultiDexApplication {
     /**
      * weex
      */
-    public void initWEEX() {
+//    public void initWEEX() {
+//
+//        WXEnvironment.sApplication = App.getApp();
+//        WXSoInstallMgrSdk.init(App.getApp());
+//        InitConfig.Builder builder = new InitConfig.Builder();
+//        //builder.setHttpAdapter(new OkHttpAdapter())
+//        builder.setImgAdapter(new ImageAdapter());
+//        InitConfig config = builder.build();
+//        try {
+//            WXSDKEngine.initialize(this, config);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            WXSDKEngine.registerModule(WEEXConfig.commonPage, HybridPageModule.class, true);
+//        } catch (WXException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-        WXEnvironment.sApplication = App.getApp();
-        WXSoInstallMgrSdk.init(App.getApp());
-        InitConfig.Builder builder = new InitConfig.Builder();
-        //builder.setHttpAdapter(new OkHttpAdapter())
-        builder.setImgAdapter(new ImageAdapter());
-        InitConfig config = builder.build();
-        try {
-            WXSDKEngine.initialize(this, config);
-        } catch (Exception e) {
-            e.printStackTrace();
+    /**
+     * RN method
+     */
+    private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+        @Override
+        public boolean getUseDeveloperSupport() {
+            return BuildConfig.DEBUG;
         }
-        try {
-            WXSDKEngine.registerModule(WEEXConfig.commonPage, HybridPageModule.class, true);
-        } catch (WXException e) {
-            e.printStackTrace();
+
+        @Override
+        protected List<ReactPackage> getPackages() {
+            return Arrays.<ReactPackage>asList(
+                    new MainReactPackage()
+            );
         }
+
+        @Override
+        protected String getJSMainModuleName() {
+            return "index";
+        }
+    };
+
+    @Override
+    public ReactNativeHost getReactNativeHost() {
+        return mReactNativeHost;
     }
 }
